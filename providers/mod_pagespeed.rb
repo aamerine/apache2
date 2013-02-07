@@ -2,6 +2,7 @@ def mod_pagespeed_downloaded?(path, new_resource) #borrowed this function patter
   if ::File.exists? path
     require 'digest'
     sha = Digest::SHA256.file(path).hexdigest
+    Chef::Log.debug "path: #{sha} and resource sha: #{new_resource.sha}"
     sha == new_resource.sha
   else
     return false
